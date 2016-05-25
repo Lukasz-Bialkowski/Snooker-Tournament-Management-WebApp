@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Frame;
+import entity.Match;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import services.FrameService;
+import services.MatchService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-@RequestMapping("frames")
+@RequestMapping("tournaments/{tournamentId}/matches/{matchId}/frames")
 public class FrameController {
 
     private static final Logger logger = LoggerFactory.getLogger(TournamentController.class);
@@ -22,13 +24,19 @@ public class FrameController {
     @Autowired
     FrameService frameService;
 
+    @Autowired
+    MatchService matchService;
+
     private FrameService getService() {
         return this.frameService;
     }
 
-    @RequestMapping(method = {RequestMethod.POST},value = {"/save"})
+    @RequestMapping(method = {RequestMethod.POST}, value = {"/save"})
     @ResponseBody
-    public Frame save(@RequestBody Frame model, HttpServletResponse response) {
+    public Frame save(@RequestBody Frame model, @PathVariable long matchId, HttpServletResponse response) {
+        Match match = matchService.get(matchId);
+        model.setMatch(match);
+
         return this.getService().save(model);
     }
 
