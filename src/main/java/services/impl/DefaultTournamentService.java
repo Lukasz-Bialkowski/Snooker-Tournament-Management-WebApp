@@ -26,7 +26,7 @@ public class DefaultTournamentService extends CrudServiceImpl<Tournament> implem
     }
 
     @Override
-    public List<Tournament> findByYear(int year) {
-        return tournamentRepository.findByYear(year);
+    public List<Tournament> findTournamentByYearInWhichPlayerScoredAtLeast1000(int year) {
+        return this.tournamentRepository.findTournamentByYearInWhichPlayerScoredAtLeast1000(year);
     }
 }

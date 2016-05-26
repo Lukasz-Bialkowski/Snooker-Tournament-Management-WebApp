@@ -14,11 +14,21 @@ public class Tournament {
     @GeneratedValue
     Long id;
 
+    String name;
+
     int year;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tournament")
             @JsonBackReference
     List<Match> matches = new ArrayList<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<Match> getMatches() {
         return matches;

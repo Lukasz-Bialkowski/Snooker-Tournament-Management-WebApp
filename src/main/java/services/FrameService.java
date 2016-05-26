@@ -2,5 +2,8 @@ package services;
 
 import entity.Frame;
 
-public interface FrameService  extends CrudService<Frame>{
+import java.util.List;
+
+public interface FrameService extends CrudService<Frame> {
+
 }

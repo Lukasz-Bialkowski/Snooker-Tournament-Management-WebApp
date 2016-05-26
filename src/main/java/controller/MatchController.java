@@ -42,7 +42,7 @@ public class MatchController {
         System.out.println("HEJO JESTEM TUTAJ" + tournamentId);
 
         Player firstPlayer = playerService.get(model.getFirstPlayerId());
-        Player secondPlayer = playerService.get(model.getFirstPlayerId());
+        Player secondPlayer = playerService.get(model.getSecondPlayerId());
         Tournament tournament = tournamentService.get(tournamentId);
 
         Match match = new Match();

@@ -58,9 +58,10 @@ public class TournamentController {
         return new ResponseEntity<Tournament>(tournament, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/tournament", method = RequestMethod.GET)
-    public ResponseEntity<?> getByYear(@RequestParam int year) {
-        List<Tournament> tournaments = this.getService().findByYear(year);
+    @RequestMapping(method = {RequestMethod.GET},value = {"/tournament"})
+    @ResponseBody
+    public ResponseEntity<?> pointsTournament(@RequestParam int year) {
+        List<Tournament> tournaments = this.getService().findTournamentByYearInWhichPlayerScoredAtLeast1000(year);
         return new ResponseEntity<List<Tournament>>(tournaments, HttpStatus.OK);
     }
 

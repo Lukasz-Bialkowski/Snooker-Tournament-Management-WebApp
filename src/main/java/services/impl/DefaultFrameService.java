@@ -9,6 +9,8 @@ import repository.FrameRepository;
 import services.FrameService;
 import services.MatchService;
 
+import java.util.List;
+
 @Service
 public class DefaultFrameService extends CrudServiceImpl<Frame> implements FrameService {
 
@@ -24,4 +26,5 @@ public class DefaultFrameService extends CrudServiceImpl<Frame> implements Frame
     public Frame create() {
         return new Frame();
     }
+
 }
