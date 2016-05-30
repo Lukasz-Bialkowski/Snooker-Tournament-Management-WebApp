@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <!-- endbuild -->
+</head>
+<body ng-app="mainApp">
+<div class="container">
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
+              ng-click="menuCollapsed = ! menuCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand">
+        ngbp
+        <small>
+          <a href="http://github.com/ngbp/ngbp/blob/v<%= version %>-release/CHANGELOG.md">
+            v<%= version %>
+          </a>
+        </small>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" collapse="menuCollapsed">
+      <ul class="nav navbar-nav">
+        <li ui-sref-active="active">
+          <a href ui-sref="mainsearch">
+            <i class="fa fa-home"></i>
+            Main
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a href ui-sref="tournaments">
+            <i class="fa fa-info-circle"></i>
+            Tournaments
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a href ui-sref="players">
+            <i class="fa fa-book"></i>
+            Players
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/ngbp/ngbp">
+            <i class="fa fa-github-alt"></i>
+            Github
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/ngbp/ngbp/issues">
+            <i class="fa fa-comments"></i>
+            Support
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div ui-view></div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <ul class="social">
+        <li><a target="_blank" href="http://gplus.to/joshdmiller"><i class="fa fa-google-plus-sign"></i></a></li>
+        <li><a target="_blank" href="http://twitter.com/joshdmiller"><i class="fa fa-twitter-sign"></i></a></li>
+        <li><a target="_blank" href="http://linkedin.com/in/joshdmiller"><i class="fa fa-linkedin-sign"></i></a></li>
+        <li><a target="_blank" href="http://github.com/ngbp/ngbp"><i class="fa fa-github-sign"></i></a></li>
+      </ul>
+
+
+      <p>
+        (c) 2013 <a href="http://www.joshdavidmiller.com">Josh David Miller</a>.
+        <a href="http://github.com/ngbp/ngbp/fork_select">Fork this</a>
+        to kickstart your next project.
+        <br/>
+        ngbp is based on
+        <a href="http://www.angularjs.org">AngularJS</a>,
+        <a href="http://getbootstrap.com">Bootstrap</a>,
+        <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>,
+        and
+        <a href="http://fortawesome.github.com/Font-Awesome">Font Awesome</a>.
+      </p>
+    </div>
+  </div>
+</footer>
+<!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+
+</script>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+
+<!-- include: "type": "js", "files": "scripts/**/*.js" -->
+<script src="scripts/app.js"></script>
+<!-- /include -->
+<!-- endbuild -->
+<!--<mainpage-search></mainpage-search>-->
+<!--<navbar-search></navbar-search>-->
+</body>
+</html>
