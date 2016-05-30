@@ -36,10 +36,9 @@ public class MatchController {
         return this.matchService;
     }
 
-    @RequestMapping(method = {RequestMethod.POST},value = {"/save"})
+    @RequestMapping(method = {RequestMethod.POST},value = {"/savedto"})
     @ResponseBody
     public Match save(@RequestBody MatchDTO model, @PathVariable long tournamentId, HttpServletResponse response) {
-        System.out.println("HEJO JESTEM TUTAJ" + tournamentId);
 
         Player firstPlayer = playerService.get(model.getFirstPlayerId());
         Player secondPlayer = playerService.get(model.getSecondPlayerId());
@@ -51,6 +50,18 @@ public class MatchController {
         match.setSecondPlayer(secondPlayer);
         match.setTournament(tournament);
 
+        System.out.println(match);
+
+        return this.getService().save(match);
+    }
+
+    @RequestMapping(method = {RequestMethod.POST},value = {"/save"})
+    @ResponseBody
+    public Match save(@RequestBody Match model, @PathVariable long tournamentId, HttpServletResponse response) {
+
+        Tournament tournament = tournamentService.get(tournamentId);
+        Match match = model;
+        match.setTournament(tournament);
         System.out.println(match);
 
         return this.getService().save(match);

@@ -8,14 +8,14 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <!-- endbuild -->
 </head>
-<body ng-app="mainApp">
-<div class="container">
+<body ng-app="mainApp" class="container">
+<div >
   <div class="navbar navbar-default">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
@@ -26,10 +26,10 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand">
-        ngbp
+        <b>Snooker Chart</b>
         <small>
-          <a href="http://github.com/ngbp/ngbp/blob/v<%= version %>-release/CHANGELOG.md">
-            v<%= version %>
+          <a href>
+            v 0.1
           </a>
         </small>
       </div>
@@ -37,9 +37,9 @@
     <div class="collapse navbar-collapse" collapse="menuCollapsed">
       <ul class="nav navbar-nav">
         <li ui-sref-active="active">
-          <a href ui-sref="mainsearch">
+          <a href ui-sref="scores">
             <i class="fa fa-home"></i>
-            Main
+            Scores
           </a>
         </li>
         <li ui-sref-active="active">
@@ -72,16 +72,8 @@
 </div>
 <div ui-view></div>
 <footer class="footer">
-  <div class="container">
+  <div >
     <div class="footer-inner">
-      <ul class="social">
-        <li><a target="_blank" href="http://gplus.to/joshdmiller"><i class="fa fa-google-plus-sign"></i></a></li>
-        <li><a target="_blank" href="http://twitter.com/joshdmiller"><i class="fa fa-twitter-sign"></i></a></li>
-        <li><a target="_blank" href="http://linkedin.com/in/joshdmiller"><i class="fa fa-linkedin-sign"></i></a></li>
-        <li><a target="_blank" href="http://github.com/ngbp/ngbp"><i class="fa fa-github-sign"></i></a></li>
-      </ul>
-
-
       <p>
         (c) 2013 <a href="http://www.joshdavidmiller.com">Josh David Miller</a>.
         <a href="http://github.com/ngbp/ngbp/fork_select">Fork this</a>
@@ -118,13 +110,14 @@
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
 <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

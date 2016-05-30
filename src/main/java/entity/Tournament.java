@@ -16,6 +16,8 @@ public class Tournament {
 
     String name;
 
+    String city;
+
     int year;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tournament")
@@ -52,5 +54,13 @@ public class Tournament {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

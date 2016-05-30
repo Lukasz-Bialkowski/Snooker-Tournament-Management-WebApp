@@ -1,0 +1,104 @@
+<div>
+  <fieldset>
+    <legend><h2>Turniej</h2></legend>
+      Wybierz turniej
+      <div class=" form-group">
+        <select class="form-control col-md-2" id="turniejId" ng-model="currentTournament"
+                ng-options="pp as pp.name for pp in tournaments track by pp.name" ng-change="tournamentMatches();"
+        ></select>
+      </div>{{currentTournament}}
+  </fieldset>
+
+  <div ng-show="!currentTournament">
+    <div class="alert alert-warning">
+      <strong>Uwaga!</strong> Wybierz turniej.
+    </div>
+  </div>
+  <div ng-show="currentTournament">
+  <div >
+    <legend>Zawodnicy</legend>
+    <table class="table table-hover table-striped">
+      <thead>
+      <th>Imie</th>
+      <th>Nazwisko</th>
+      <th>Data urodzenia</th>
+      <th></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="playerRow in players">
+        <td class="col-md-4 ">
+          <div class="form-group">
+            <input  type="text" class="form-control"
+                    placeholder="Imie gracza"
+                    name="phaseStart_{{$index}}" id="name"
+                    ng-model="playerRow.name" >
+          </div>
+        </td>
+
+        <td class="col-md-4 ">
+          <div class="form-group">
+            <input  type="text" class="form-control" placeholder="Nazwisko gracza"
+                    name="phaseStart_{{$index}}" id="surname"
+                    ng-model="playerRow.surname" >
+          </div>
+        </td>
+        <td class="col-md-4">
+          <div class="form-group">
+            <input  type="text" class="form-control" placeholder="np. 564 598 123"
+                    name="phaseEnd_{{$index}}" id="telephone"
+                    ng-model="playerRow.birth | date:'MM/dd/yyyy'" >
+          </div>
+        </td>
+
+        <td><button type="button" class="btn btn-danger pull-right " ng-click="removePlayer(playerRow)">Usun</button></td>
+        <td><button class="btn btn-success" ng-click="savePlayer(playerRow);">
+          Aktualizuj
+        </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div ng-show="!players.length">
+    <div class="alert alert-warning">
+      <strong>Uwaga!</strong> Dodaj zawodnikow.
+    </div>
+  </div>
+  <div ng-show="players.length">
+    <legend>Mecze</legend>
+    <button class="btn btn-success" ng-click="addMatch()">
+      Dodaj mecz
+    </button>
+    <table class="table table-hover table-striped">
+      <thead>
+      <th>Zawodnik 1</th>
+      <th>Zawodnik 2</th>
+      <th></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="matchRow in matches">
+        <td class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">{{matchRow.firstPlayer.name}} {{matchRow.firstPlayer.surname}} - {{matchRow.firstPlayer.birth | date:'MM/dd/yyyy' }}</label>
+          </div>
+        </td>
+        <td class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">{{matchRow.secondPlayer.name}} {{matchRow.secondPlayer.surname}} - {{matchRow.secondPlayer.birth | date:'MM/dd/yyyy'}}</label>
+          </div>
+        </td>
+
+        <td><button type="button" class="btn btn-danger pull-right " ng-click="removeMatch(matchRow)">Usun</button></td>
+        <td><button class="btn btn-success" ng-click="saveMatch(matchRow);">
+          Aktualizuj
+        </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>

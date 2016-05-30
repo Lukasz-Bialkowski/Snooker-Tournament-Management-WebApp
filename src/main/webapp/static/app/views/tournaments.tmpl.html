@@ -1,0 +1,36 @@
+<form name="spForm" novalidate>
+  <h2>Turnieje</h2>
+  <fieldset>
+    <legend>Informacje podstawowe</legend>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="tournamentName" class="control-label">Nazwa turnieju (wymagane)</label>
+          <input class="form-control" id="tournamentName" ng-model="current.name" required>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="city" class="control-label"> Miasto (wymagane)</label>
+          <input id="city" class="form-control" ng-model="current.city"
+                  required />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="year" class="control-label">Rok rozgrywek (wymagane)</label>
+          <input class="form-control" name="start" id="year" ng-model="current.year"
+                 required >
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<div class="row">
+  <div class="col-md-12 form-footer text-center">
+    <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>
+    <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)" >Usun</button>
+    <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)" >Aktualizuj</button>
+    <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)" >Dodaj</button>
+  </div>
+</div>
