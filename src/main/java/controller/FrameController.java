@@ -68,9 +68,8 @@ public class FrameController {
 
     @RequestMapping(method = RequestMethod.GET,value = "/listFrames")
     public ResponseEntity<?> listFrames(@PathVariable long matchId) {
-        Match match = matchService.get(matchId);
-//        if(match.)
-        List<Frame> frames = new ArrayList<>();
+        List<Frame> frames  = new ArrayList<>();
+
         for (int i = 0; i < NUMBER_OF_FRAMES_IN_MATCH; i++) {
             frames.add(new Frame());
         }

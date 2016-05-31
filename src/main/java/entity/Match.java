@@ -60,6 +60,14 @@ public class Match {
         this.id = id;
     }
 
+    public List<Frame> getFrames() {
+        return frames;
+    }
+
+    public void setFrames(List<Frame> frames) {
+        this.frames = frames;
+    }
+
     @Override
     public String toString() {
         return "Match{" +
