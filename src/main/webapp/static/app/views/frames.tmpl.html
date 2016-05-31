@@ -1,0 +1,61 @@
+<div>
+  <legend>Frejmy</legend>
+  <table class="table table-hover table-striped">
+    <thead>
+    <th>Numer</th>
+    <th>Wynik Zawodnik 1</th>
+    <th>Wynik Zawodnik 2</th>
+    <!--<th></th>-->
+    <th></th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="frameRow in matchFrames">
+      <td>{{$index+1}}.</td>
+      <td class="col-md-6">
+        <div class="form-group">
+          <input  type="text" class="form-control" placeholder="Wynik {{$index + 1}} frejmu"
+                  name="frame_{{$index}}" id="frame1"
+                  ng-model="frameRow.firstPlayerScore" >
+        </div>
+      </td>
+      <td class="col-md-6">
+        <div class="form-group">
+          <input  type="text" class="form-control" placeholder="Wynik {{$index + 1}} frejmu"
+                  name="frame_{{$index}}" id="frame2"
+                  ng-model="frameRow.secondPlayerScore" >
+        </div>
+      </td>
+
+      <td><button type="button" class="btn btn-danger pull-right " ng-click="saveFrame( $index )">Aktualizuj Frejm</button></td>
+      <!--<td><button class="btn btn-success" ng-click="saveMatch(matchRow);">-->
+        <!--Aktualizuj-->
+      <!--</button>-->
+      <!--</td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="saveModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Aktualizacja Frejmow</h4>
+      </div>
+      <div class="modal-body">
+        <p>Zakończona pomyślnie</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 form-footer text-center">
+    <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>
+    <button type="button" class="btn btn-success" ng-click="saveFrames()" >Aktualizuj</button>
+  </div>
+</div>

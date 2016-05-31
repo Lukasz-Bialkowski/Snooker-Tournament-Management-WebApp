@@ -24,6 +24,10 @@
           url : '/:tournamentId/matches',
           templateUrl : 'views/matches.tmpl.html',
           controller : 'MatchesCtrl'
+      }).state('frames', {
+          url : '/:tournamentId/matches/:matchId/frames',
+          templateUrl : 'views/frames.tmpl.html',
+          controller : 'FrameCtrl'
       }).state('players', {
           url : '/players',
           templateUrl : 'views/players.tmpl.html',
@@ -177,6 +181,62 @@
       });
       return res;
 
+}).factory('frameHTTPSrv', function($resource){
+
+      var res = $resource('http://localhost:8080/snooker-competition-chart/tournaments/:tournamentId/matches/:matchId/:subresource/:suboperation/:subresourceId', {}, {
+          list : {
+              method : 'GET',
+              params : {
+                subresource : 'frames'
+              },
+              isArray : true
+          },
+          get : {
+              params : {
+                subresource : 'frames'
+              },
+              method : 'GET'
+          },
+          create : {
+              method : 'GET',
+              params : {
+                  subresource : 'frames',
+                  suboperation : 'create'
+              }
+          },
+          save : {
+              method : 'POST',
+              params : {
+                  subresource : 'frames',
+                  suboperation : 'save'
+              }
+          },
+          saveFrames: {
+              method : 'POST',
+              params : {
+                  subresource : 'frames',
+                  suboperation : 'saveFrames'
+              },
+              isArray : true
+          },
+          remove : {
+              params : {
+                subresource : 'frames'
+              },
+              method : 'DELETE'
+          },
+          listFrames: {
+              method : 'GET',
+              params : {
+                subresource : 'frames',
+                suboperation : 'listFrames'
+              },
+              isArray : true
+          }
+
+      });
+      return res;
+
 }).controller('ScoresCtrl',['$scope', 'tournamentHTTPSrv','scoresHTTPSrv','$stateParams','$state','playerHTTPSrv','matchHTTPSrv',
         function ($scope, tournamentHTTPSrv,scoresHTTPSrv,$stateParams,$state,playerHTTPSrv,matchHTTPSrv) {
 
@@ -208,6 +268,10 @@
 
         $scope.addMatch = function() {
           $state.go("matches", {tournamentId : $scope.currentTournament.id});
+        };
+
+        $scope.addScore = function(matchRowId) {
+          $state.go("frames", {tournamentId : $scope.currentTournament.id, matchId: matchRowId });
         };
 
         $scope.savePlayer = function(item) {
@@ -324,5 +388,34 @@
             $scope.current = response;
           });
         };
+
+}]).controller('FrameCtrl',['$scope', 'tournamentHTTPSrv','$stateParams','$state','playerHTTPSrv','frameHTTPSrv',
+        function ($scope, tournamentHTTPSrv,$stateParams,$state,playerHTTPSrv,frameHTTPSrv) {
+
+        $scope.matchFrames = [];
+        $scope.FRAMES_IN_MATCH = 12;
+
+
+        $scope.saveFrame = function(index) {
+          frameHTTPSrv.save({tournamentId : $stateParams.tournamentId, matchId: $stateParams.matchId}, $scope.matchFrames[index], function(response){
+            $scope.matchFrames[index] = response;
+            $("#saveModal").modal();
+          });
+        };
+
+        $scope.saveFrames = function() {
+          frameHTTPSrv.saveFrames({tournamentId : $stateParams.tournamentId, matchId: $stateParams.matchId}, $scope.matchFrames, function(response){
+            $scope.matchFrames=response;
+            $("#saveModal").modal();
+          });
+        };
+
+        $scope.create = function() {
+          frameHTTPSrv.listFrames({tournamentId : $stateParams.tournamentId, matchId: $stateParams.matchId}, function(response) {
+            $scope.matchFrames = response;
+          });
+        };
+
+        $scope.create();
 
 }]);

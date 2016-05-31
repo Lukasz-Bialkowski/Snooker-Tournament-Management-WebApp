@@ -27,4 +27,8 @@ public class DefaultFrameService extends CrudServiceImpl<Frame> implements Frame
         return new Frame();
     }
 
+    @Override
+    public List<Frame> saveAllFrames(List<Frame> frames) {
+        return frameRepository.save(frames);
+    }
 }

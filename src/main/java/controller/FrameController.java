@@ -13,6 +13,7 @@ import services.FrameService;
 import services.MatchService;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,6 +21,7 @@ import java.util.List;
 public class FrameController {
 
     private static final Logger logger = LoggerFactory.getLogger(TournamentController.class);
+    private final int NUMBER_OF_FRAMES_IN_MATCH = 12;
 
     @Autowired
     FrameService frameService;
@@ -62,6 +64,28 @@ public class FrameController {
     public ResponseEntity<?> get(@PathVariable Long id) {
         Frame frame = this.getService().get(id);
         return new ResponseEntity<Frame>(frame, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value = "/listFrames")
+    public ResponseEntity<?> listFrames(@PathVariable long matchId) {
+        Match match = matchService.get(matchId);
+//        if(match.)
+        List<Frame> frames = new ArrayList<>();
+        for (int i = 0; i < NUMBER_OF_FRAMES_IN_MATCH; i++) {
+            frames.add(new Frame());
+        }
+        return new ResponseEntity<List<Frame>>(frames, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = {RequestMethod.POST}, value = {"/saveFrames"})
+    @ResponseBody
+    public List<Frame> saveFrames(@RequestBody List<Frame> model, @PathVariable long matchId, HttpServletResponse response) {
+        Match match = matchService.get(matchId);
+        for (Frame frame : model) {
+            frame.setMatch(match);
+        }
+
+        return this.getService().saveAllFrames(model);
     }
 
 }

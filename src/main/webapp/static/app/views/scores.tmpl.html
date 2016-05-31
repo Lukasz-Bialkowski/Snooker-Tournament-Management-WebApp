@@ -37,7 +37,7 @@
       <th>Numer</th>
       <th>Zawodnik 1</th>
       <th>Zawodnik 2</th>
-      <!--<th></th>-->
+      <th></th>
       <th></th>
       </thead>
       <tbody>
@@ -55,10 +55,10 @@
         </td>
 
         <td><button type="button" class="btn btn-danger pull-right " ng-click="removeMatch(matchRow)">Usun</button></td>
-        <!--<td><button class="btn btn-success" ng-click="saveMatch(matchRow);">-->
-          <!--Aktualizuj-->
-        <!--</button>-->
-        <!--</td>-->
+        <td><button class="btn btn-success" ng-click="addScore(matchRow.id)">
+          Wprowadz wyniki
+        </button>
+        </td>
       </tr>
       </tbody>
     </table>
