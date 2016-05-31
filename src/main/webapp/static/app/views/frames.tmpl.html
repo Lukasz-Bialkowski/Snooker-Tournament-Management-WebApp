@@ -1,12 +1,13 @@
 <div>
-  <legend>Frejmy</legend>
+  <legend><h2>Frejmy</h2></legend>
+  <h2 class="text-center">Wynik Frejmu</h2>
+  <h2 class="text-center">{{firstPlayerScore}} : {{secondPlayerScore}}</h2>
   <table class="table table-hover table-striped">
     <thead>
     <th>Numer</th>
-    <th>Wynik Zawodnik 1</th>
-    <th>Wynik Zawodnik 2</th>
+    <th>Wynik Zawodnika 1</th>
+    <th>Wynik Zawodnika 2</th>
     <!--<th></th>-->
-    <th></th>
     </thead>
     <tbody>
     <tr ng-repeat="frameRow in matchFrames">
@@ -15,18 +16,17 @@
         <div class="form-group">
           <input  type="text" class="form-control" placeholder="Wynik {{$index + 1}} frejmu"
                   name="frame_{{$index}}" id="frame1"
-                  ng-model="frameRow.firstPlayerScore" >
+                  ng-model="frameRow.firstPlayerScore" ng-change="countPoints()" >
         </div>
       </td>
       <td class="col-md-6">
         <div class="form-group">
           <input  type="text" class="form-control" placeholder="Wynik {{$index + 1}} frejmu"
                   name="frame_{{$index}}" id="frame2"
-                  ng-model="frameRow.secondPlayerScore" >
+                  ng-model="frameRow.secondPlayerScore" ng-change="countPoints()" >
         </div>
       </td>
 
-      <td><button type="button" class="btn btn-danger pull-right " ng-click="saveFrame( $index )">Aktualizuj Frejm</button></td>
       <!--<td><button class="btn btn-success" ng-click="saveMatch(matchRow);">-->
         <!--Aktualizuj-->
       <!--</button>-->

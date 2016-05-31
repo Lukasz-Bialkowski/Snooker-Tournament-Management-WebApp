@@ -38,25 +38,23 @@
       <th>Zawodnik 1</th>
       <th>Zawodnik 2</th>
       <th></th>
-      <th></th>
       </thead>
       <tbody>
-      <tr ng-repeat="matchRow in tournamentMatches">
+      <tr ng-repeat="matchRow in tournamentMatches | unique:'id'">
         <td>{{$index+1}}.</td>
         <td class="col-md-6">
           <div class="form-group">
-            <label class="control-label">{{matchRow.firstPlayer.name}} {{matchRow.firstPlayer.surname}} - {{matchRow.firstPlayer.birth | date:'MM/dd/yyyy' }}</label>
+            <label class="control-label">{{matchRow.firstPlayer.name}} {{matchRow.firstPlayer.surname}} - telefon: {{matchRow.firstPlayer.telephone}}</label>
           </div>
         </td>
         <td class="col-md-6">
           <div class="form-group">
-            <label class="control-label">{{matchRow.secondPlayer.name}} {{matchRow.secondPlayer.surname}} - {{matchRow.secondPlayer.birth | date:'MM/dd/yyyy'}}</label>
+            <label class="control-label">{{matchRow.secondPlayer.name}} {{matchRow.secondPlayer.surname}} - telefon: {{matchRow.secondPlayer.telephone}}</label>
           </div>
         </td>
 
-        <td><button type="button" class="btn btn-danger pull-right " ng-click="removeMatch(matchRow)">Usun</button></td>
         <td><button class="btn btn-success" ng-click="addScore(matchRow.id)">
-          Wprowadz wyniki
+          Wprowadz nowe wyniki
         </button>
         </td>
       </tr>

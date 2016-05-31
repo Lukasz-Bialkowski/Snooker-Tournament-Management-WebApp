@@ -1,5 +1,5 @@
 <form name="spForm" novalidate>
-  <h2>Turnieje z wynikiem > 1000</h2>
+  <h2>Znajdz turniej w ktorym zawodnik zdobyl co najmniej 1000 punktow w meczu</h2>
   <fieldset>
     <legend>Kryteria wyszukiwania</legend>
     <div class="row">
@@ -19,6 +19,7 @@
         <strong>Uwaga!</strong> Brak wynikow spelniajacych warunki zapytania.
       </div>
     </div>
+    <legend ng-show="queryTournaments.length">Wynik</legend>
     <table ng-show="queryTournaments.length" class="table table-hover table-striped">
       <thead>
       <th>Numer</th>

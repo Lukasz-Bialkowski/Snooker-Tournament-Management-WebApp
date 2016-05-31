@@ -16,7 +16,7 @@ public class Match {
     @JoinColumn
     Tournament tournament;
 
-    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
     List<Frame> frames;
 

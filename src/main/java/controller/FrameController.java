@@ -80,6 +80,8 @@ public class FrameController {
     @ResponseBody
     public List<Frame> saveFrames(@RequestBody List<Frame> model, @PathVariable long matchId, HttpServletResponse response) {
         Match match = matchService.get(matchId);
+        frameService.deleteAll(match.getFrames());
+
         for (Frame frame : model) {
             frame.setMatch(match);
         }

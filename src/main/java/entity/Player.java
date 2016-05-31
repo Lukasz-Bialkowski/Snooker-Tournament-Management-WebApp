@@ -23,7 +23,7 @@ public class Player {
     String telephone;
 
     @Column(nullable = true)
-    Date birth;
+    String age;
 
     public Long getId() {
         return id;
@@ -57,12 +57,12 @@ public class Player {
         this.telephone = telephone;
     }
 
-    public Date getBirth() {
-        return birth;
+    public String getAge() {
+        return age;
     }
 
-    public void setBirth(Date birth) {
-        this.birth = birth;
+    public void setAge(String age) {
+        this.age = age;
     }
 
     @Override
@@ -72,21 +72,21 @@ public class Player {
 
         Player player = (Player) o;
 
-        if (!id.equals(player.id)) return false;
+        if (id != null ? !id.equals(player.id) : player.id != null) return false;
         if (!name.equals(player.name)) return false;
         if (!surname.equals(player.surname)) return false;
         if (telephone != null ? !telephone.equals(player.telephone) : player.telephone != null) return false;
-        return !(birth != null ? !birth.equals(player.birth) : player.birth != null);
+        return !(age != null ? !age.equals(player.age) : player.age != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + name.hashCode();
         result = 31 * result + surname.hashCode();
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-        result = 31 * result + (birth != null ? birth.hashCode() : 0);
+        result = 31 * result + (age != null ? age.hashCode() : 0);
         return result;
     }
 
@@ -97,7 +97,7 @@ public class Player {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", telephone='" + telephone + '\'' +
-                ", birth=" + birth +
+                ", age='" + age + '\'' +
                 '}';
     }
 }

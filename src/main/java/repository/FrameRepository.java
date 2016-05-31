@@ -9,4 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface FrameRepository extends JpaRepository<Frame, Long> {
+
+
+
 }

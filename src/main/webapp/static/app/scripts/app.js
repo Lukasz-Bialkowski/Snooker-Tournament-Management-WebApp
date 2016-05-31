@@ -405,7 +405,8 @@
 
         $scope.matchFrames = [];
         $scope.FRAMES_IN_MATCH = 12;
-
+        $scope.firstPlayerScore =0;
+        $scope.secondPlayerScore =0;
 
         $scope.saveFrame = function(index) {
           frameHTTPSrv.save({tournamentId : $stateParams.tournamentId, matchId: $stateParams.matchId}, $scope.matchFrames[index], function(response){
@@ -429,6 +430,15 @@
 
         $scope.create();
 
+        $scope.countPoints = function(){
+          $scope.firstPlayerScore =0;
+          $scope.secondPlayerScore =0;
+          for (var i = 0; i < $scope.matchFrames.length; i++) {
+              $scope.firstPlayerScore += parseInt($scope.matchFrames[i].firstPlayerScore);
+              $scope.secondPlayerScore += parseInt($scope.matchFrames[i].secondPlayerScore);
+          }
+        };
+
 }]).controller('QueryCtrl',['$scope', '$stateParams','$state','tournamentHTTPSrv', function ($scope, $stateParams,$state,tournamentHTTPSrv) {
 
       $scope.queryTournaments =[];
@@ -439,4 +449,41 @@
           });
       };
 
-}]);
+}]).filter('unique', function () {
+
+  return function (items, filterOn) {
+
+    if (filterOn === false) {
+      return items;
+    }
+
+    if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+      var hashCheck = {}, newItems = [];
+
+      var extractValueToCompare = function (item) {
+        if (angular.isObject(item) && angular.isString(filterOn)) {
+          return item[filterOn];
+        } else {
+          return item;
+        }
+      };
+
+      angular.forEach(items, function (item) {
+        var valueToCheck, isDuplicate = false;
+
+        for (var i = 0; i < newItems.length; i++) {
+          if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+            isDuplicate = true;
+            break;
+          }
+        }
+        if (!isDuplicate) {
+          newItems.push(item);
+        }
+
+      });
+      items = newItems;
+    }
+    return items;
+  };
+});
