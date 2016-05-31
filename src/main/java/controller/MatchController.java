@@ -96,4 +96,10 @@ public class MatchController {
         Match match = this.getService().get(id);
         return new ResponseEntity<Match>(match, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/tournamentMatches", method = RequestMethod.GET)
+    public ResponseEntity<?> tournamentMatches(@PathVariable long tournamentId) {
+        Tournament tournament = tournamentService.get(tournamentId);
+        return new ResponseEntity<List<Match>>(tournament.getMatches(), HttpStatus.OK);
+    }
 }

@@ -23,4 +23,9 @@ public class DefaultPlayerService extends CrudServiceImpl<Player> implements Pla
     public Player create() {
         return new Player();
     }
+
+    @Override
+    public List<Player> filterPlayersByTournament(Long tournamentId) {
+        return playerRepository.filterPlayersByTournament(tournamentId);
+    }
 }

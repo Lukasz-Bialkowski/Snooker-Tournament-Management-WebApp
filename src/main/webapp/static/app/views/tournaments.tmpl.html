@@ -6,26 +6,44 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="tournamentName" class="control-label">Nazwa turnieju (wymagane)</label>
-          <input class="form-control" id="tournamentName" ng-model="current.name" required>
+          <input class="form-control" id="tournamentName" placeholder="Nazwa turnieju" ng-model="current.name" required>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label for="city" class="control-label"> Miasto (wymagane)</label>
-          <input id="city" class="form-control" ng-model="current.city"
+          <input id="city" class="form-control" ng-model="current.city" placeholder="Miasto"
                   required />
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label for="year" class="control-label">Rok rozgrywek (wymagane)</label>
-          <input class="form-control" name="start" id="year" ng-model="current.year"
+          <input class="form-control" name="start" id="year" ng-model="current.year" placeholder="Rok rozgrywek"
                  required >
         </div>
       </div>
     </div>
   </fieldset>
 </form>
+
+<div class="modal fade" id="saveModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dodawanie turnieju</h4>
+      </div>
+      <div class="modal-body">
+        <p>Zakończona pomyślnie</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-12 form-footer text-center">
     <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>

@@ -58,4 +58,11 @@ public class PlayerController {
         return new ResponseEntity<Player>(player, HttpStatus.OK);
     }
 
+    @RequestMapping(method = {RequestMethod.GET},value = {"/tournament"})
+    @ResponseBody
+    public ResponseEntity<?> filteredByTournament(@RequestParam Long tournamentId) {
+        List<Player> players = this.getService().filterPlayersByTournament(tournamentId);
+        return new ResponseEntity<List<Player>>(players, HttpStatus.OK);
+    }
+
 }

@@ -6,13 +6,13 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="name" class="control-label">Imie (wymagane)</label>
-          <input class="form-control" id="name" ng-model="current.name" required>
+          <input class="form-control" id="name" ng-model="current.name" placeholder="Imie gracza" required>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="surname" class="control-label"> Nazwisko (wymagane)</label>
-          <input id="surname" class="form-control" ng-model="current.surname"
+          <input id="surname" class="form-control" ng-model="current.surname" placeholder="Nazwisko gracza"
                  required />
         </div>
       </div>
@@ -21,20 +21,38 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="telephone" class="control-label">Telefon</label>
-          <input class="form-control" name="start" id="telephone" ng-model="current.telephone"
+          <input class="form-control" name="start" id="telephone" ng-model="current.telephone" placeholder="np. 768 324 322"
                  required >
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="birth" class="control-label">Data urodzenia</label>
-          <input class="form-control" type="date" name="start" id="birth" ng-model="current.birth"
+          <input class="form-control" type="date" name="start" id="birth" ng-model="current.birth" placeholder="np. 23/10/1960"
                  required >
         </div>
       </div>
     </div>
   </fieldset>
 </form>
+
+<div class="modal fade" id="saveModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dodawanie gracza</h4>
+      </div>
+      <div class="modal-body">
+        <p>Zakończona pomyślnie</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-12 form-footer text-center">
     <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>

@@ -26,11 +26,11 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand">
-        <b>Snooker Chart</b>
+        <a ui-sref="scores"><b>Snooker Chart</b></a>
         <small>
-          <a href>
+          <span>
             v 0.1
-          </a>
+          </span>
         </small>
       </div>
     </div>
@@ -39,31 +39,19 @@
         <li ui-sref-active="active">
           <a href ui-sref="scores">
             <i class="fa fa-home"></i>
-            Scores
+            Wyniki
           </a>
         </li>
         <li ui-sref-active="active">
           <a href ui-sref="tournaments">
             <i class="fa fa-info-circle"></i>
-            Tournaments
+            Turnieje
           </a>
         </li>
         <li ui-sref-active="active">
           <a href ui-sref="players">
             <i class="fa fa-book"></i>
-            Players
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/ngbp/ngbp">
-            <i class="fa fa-github-alt"></i>
-            Github
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/ngbp/ngbp/issues">
-            <i class="fa fa-comments"></i>
-            Support
+            Gracze
           </a>
         </li>
       </ul>
@@ -74,17 +62,13 @@
 <footer class="footer">
   <div >
     <div class="footer-inner">
-      <p>
-        (c) 2013 <a href="http://www.joshdavidmiller.com">Josh David Miller</a>.
-        <a href="http://github.com/ngbp/ngbp/fork_select">Fork this</a>
-        to kickstart your next project.
-        <br/>
-        ngbp is based on
+      <p><br>
+        <a href>Łukasz Białkowski</a> - technologie:
         <a href="http://www.angularjs.org">AngularJS</a>,
         <a href="http://getbootstrap.com">Bootstrap</a>,
         <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>,
-        and
-        <a href="http://fortawesome.github.com/Font-Awesome">Font Awesome</a>.
+        <a href>Spring</a>,
+        <a href>SpringMVC</a>.
       </p>
     </div>
   </div>
@@ -116,7 +100,7 @@
 <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
 <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
 <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->

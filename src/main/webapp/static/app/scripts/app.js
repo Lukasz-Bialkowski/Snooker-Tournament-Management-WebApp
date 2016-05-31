@@ -100,6 +100,13 @@
               method : 'GET',
               isArray : true
           },
+          tournamentPlayers: {
+              method : 'GET',
+              params: {
+                operation : 'tournament'
+              },
+              isArray : true
+          },
           get : {
               method : 'GET'
           },
@@ -157,6 +164,14 @@
                 subresource : 'matches'
               },
               method : 'DELETE'
+          },
+          tournamentMatches : {
+              method : 'GET',
+              params : {
+                subresource : 'matches',
+                suboperation : 'tournamentMatches'
+              },
+              isArray : true
           }
 
       });
@@ -166,8 +181,9 @@
         function ($scope, tournamentHTTPSrv,scoresHTTPSrv,$stateParams,$state,playerHTTPSrv,matchHTTPSrv) {
 
         $scope.players = [];
+        $scope.tournamentPlayers = [];
+        $scope.tournamentMatches = [];
         $scope.tournaments = [];
-        $scope.matches = [];
         $scope.currentTournament;
 
         tournamentHTTPSrv.list({}, function(response){
@@ -176,16 +192,43 @@
 
         playerHTTPSrv.list({}, function(response){
           $scope.players = response;
-        });
+        })
 
-        $scope.tournamentMatches = function() {
-            matchHTTPSrv.list({tournamentId : $scope.currentTournament.id}, function(response){
-              $scope.matches = response;
+        $scope.getTournamentPlayers = function() {
+          playerHTTPSrv.tournamentPlayers({tournamentId : $scope.currentTournament.id}, function(response){
+            $scope.tournamentPlayers = response;
+          })
+        };
+
+        $scope.getTournamentMatches = function() {
+            matchHTTPSrv.tournamentMatches({tournamentId : $scope.currentTournament.id}, function(response){
+              $scope.tournamentMatches = response;
             });
         };
 
         $scope.addMatch = function() {
           $state.go("matches", {tournamentId : $scope.currentTournament.id});
+        };
+
+        $scope.savePlayer = function(item) {
+          playerHTTPSrv.save(item, function(response){
+            $scope.current=response;
+            $scope.getTournamentMatches();
+          })
+        };
+
+        $scope.saveMatch = function(item) {
+          matchHTTPSrv.save({tournamentId  : $scope.currentTournament.id}, item, function(response){
+            $scope.current=response;
+            $scope.getTournamentPlayers();
+          })
+        };
+
+        $scope.removeMatch = function(item) {
+          matchHTTPSrv.remove({tournamentId : $scope.currentTournament.id, subresourceId : item.id}, function(response){
+            $scope.getTournamentPlayers();
+            $scope.getTournamentMatches();
+          })
         };
 
 
@@ -200,13 +243,20 @@
         $scope.save = function(item) {
           tournamentHTTPSrv.save(item, function(response){
             $scope.current=response;
+            $("#saveModal").modal();
           })
         };
 
         $scope.remove = function(item) {
           tournamentHTTPSrv.remove({tournamentId : item.id}, function(response){
-
+            $scope.create();
           })
+        };
+
+        $scope.create = function() {
+          tournamentHTTPSrv.create({}, function(response) {
+            $scope.current = response;
+          });
         };
 
 }]).controller('PlayersCtrl',['$scope', 'tournamentHTTPSrv','$stateParams','$state','playerHTTPSrv',
@@ -221,13 +271,20 @@
         $scope.save = function(item) {
           playerHTTPSrv.save(item, function(response){
             $scope.current=response;
+            $("#saveModal").modal();
           })
         };
 
         $scope.remove = function(item) {
-          playerHTTPSrv.remove({tournamentId : item.id}, function(response){
-
+          playerHTTPSrv.remove({playerId : item.id}, function(response){
+            $scope.create();
           })
+        };
+
+        $scope.create = function() {
+          playerHTTPSrv.create({}, function(response) {
+            $scope.current = response;
+          });
         };
 
 }]).controller('MatchesCtrl',['$scope', '$stateParams','$state','matchHTTPSrv','playerHTTPSrv','tournamentHTTPSrv',
@@ -252,13 +309,20 @@
         $scope.save = function(item) {
           matchHTTPSrv.save({tournamentId : $stateParams.tournamentId}, item, function(response){
             $scope.current=response;
+            $("#saveModal").modal();
           })
         };
 
         $scope.remove = function(item) {
           matchHTTPSrv.remove({tournamentId : $stateParams.tournamentId, subresourceId : item.id}, function(response){
-
+            $scope.create();
           })
+        };
+
+        $scope.create = function() {
+          matchHTTPSrv.create({tournamentId : $stateParams.tournamentId}, function(response) {
+            $scope.current = response;
+          });
         };
 
 }]);
