@@ -1,0 +1,50 @@
+<form name="spForm" novalidate>
+  <h2>Turnieje z wynikiem > 1000</h2>
+  <fieldset>
+    <legend>Kryteria wyszukiwania</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name" class="control-label">Rok (wymagane)</label>
+          <input class="form-control" id="name" ng-model="queryYear" placeholder="Filtruj po roku" required>
+          </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>
+          <button type="button" class="btn btn-success" ng-click="query(queryYear)" >Szukaj</button>
+        </div>
+      </div>
+    </div>
+    <div ng-show="!queryTournaments.length">
+      <div class="alert alert-warning">
+        <strong>Uwaga!</strong> Brak wynikow spelniajacych warunki zapytania.
+      </div>
+    </div>
+    <table ng-show="queryTournaments.length" class="table table-hover table-striped">
+      <thead>
+      <th>Nazwa</th>
+      <th>Miasto</th>
+      <th>Rok</th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="tournamentRow in queryTournaments">
+        <td>{{$index+1}}.</td>
+        <td class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">{{tournamentRow.name}}</label>
+          </div>
+        </td>
+        <td class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">{{tournamentRow.city}}</label>
+          </div>
+        </td>
+        <td class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">{{tournamentRow.year}}</label>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</form>

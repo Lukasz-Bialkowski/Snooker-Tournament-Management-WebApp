@@ -32,6 +32,10 @@
           url : '/players',
           templateUrl : 'views/players.tmpl.html',
           controller : 'PlayersCtrl'
+      }).state('query', {
+          url : '/query',
+          templateUrl : 'views/query.tmpl.html',
+          controller : 'QueryCtrl'
       });
 
   }).factory('tournamentHTTPSrv', function($resource){
@@ -58,6 +62,13 @@
           },
           remove : {
               method : 'DELETE'
+          },
+          tournament : {
+            method : 'GET',
+            params : {
+                operation : 'tournament'
+            },
+            isArray : true
           }
 
       });
@@ -417,5 +428,15 @@
         };
 
         $scope.create();
+
+}]).controller('QueryCtrl',['$scope', '$stateParams','$state','tournamentHTTPSrv', function ($scope, $stateParams,$state,tournamentHTTPSrv) {
+
+      $scope.queryTournaments =[];
+
+      $scope.query = function(queryYear) {
+          tournamentHTTPSrv.tournament({year : queryYear}, function(response){
+            $scope.queryTournaments = response;
+          });
+      };
 
 }]);
