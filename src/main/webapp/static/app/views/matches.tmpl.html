@@ -7,7 +7,7 @@
         <div class="form-group">
           <label for="player1" class="control-label">Zawodnik 1</label>
           <select class="form-control " id="player1" ng-model="current.firstPlayer"
-                  ng-options='item as (item.name + " "+ item.surname) for item in players track by item.surname'></select>
+                  ng-options='item as (item.name + " "+ item.surname) for item in players track by item.surname' required btr-validation></select>
 
         </div>
       </div>
@@ -15,7 +15,7 @@
         <div class="form-group">
           <label for="player2" class="control-label">Zawodnik 2</label>
           <select class="form-control " id="player2" ng-model="current.secondPlayer"
-                  ng-options='item as (item.name + " "+ item.surname) for item in players track by item.surname'></select>
+                  ng-options='item as (item.name + " "+ item.surname) for item in players track by item.surname' required btr-validation></select>
         </div>
       </div>
     </div>
@@ -43,14 +43,14 @@
   <div class="col-md-12 form-footer text-center">
     <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>
     <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)" >Usun</button>
-    <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)" >Aktualizuj</button>
-    <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)" >Dodaj</button>
+    <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)" ng-disabled="spForm.$invalid || spForm.$pristine">Aktualizuj</button>
+    <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)" ng-disabled="spForm.$invalid || spForm.$pristine">Dodaj</button>
     <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()" >Nowy mecz</button>
   </div>
 </div>
 
 <br><br>
-<legend >Lista meczow turnieju {{currentTournament.name}}</legend>
+<legend >Lista meczow turnieju - {{currentTournament.name}}</legend>
 <div ng-show="!tournamentMatches.length">
   <div class="alert alert-warning">
     <strong>Uwaga!</strong> Brak dodanych meczow.

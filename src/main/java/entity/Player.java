@@ -19,10 +19,10 @@ public class Player {
     @Column(nullable = false)
     String surname;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     String telephone;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     String age;
 
     public Long getId() {

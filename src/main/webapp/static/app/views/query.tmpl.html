@@ -6,9 +6,9 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="name" class="control-label">Rok (wymagane)</label>
-          <input class="form-control" id="name" ng-model="queryYear" placeholder="Filtruj po roku" required>
+          <input class="form-control" id="name" ng-model="queryYear" placeholder="Filtruj po roku" required btr-validation>
           <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>
-          <button type="button" class="btn btn-success" ng-click="query(queryYear)" >Szukaj</button>
+          <button type="button" class="btn btn-success" ng-click="query(queryYear)" ng-disabled="spForm.$invalid || spForm.$pristine">Szukaj</button>
         </div>
       </div>
     </div>

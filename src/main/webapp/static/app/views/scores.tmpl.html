@@ -2,10 +2,10 @@
   <fieldset>
     <legend ng-if="currentTournament.name"><h2>Turniej - {{currentTournament.name}}</h2></legend>
     <legend ng-if="!currentTournament.name"><h2>Turniej</h2></legend>
-      <label ng-if="!currentTournament.name">Wybierz turniej</label>
+      <label ng-if="!currentTournament.name">Wybierz turniej (wymagane)</label>
       <div  class=" form-group">
         <select class="form-control col-md-2" id="turniejId" ng-model="currentTournament"
-                ng-options="pp as pp.name for pp in tournaments track by pp.name" ng-change="getTournamentMatches() ; getTournamentPlayers();"
+                ng-options="pp as pp.name for pp in tournaments track by pp.name" ng-change="getTournamentMatches() ; getTournamentPlayers();" required btr-validation
         ></select>
       </div>
   </fieldset>

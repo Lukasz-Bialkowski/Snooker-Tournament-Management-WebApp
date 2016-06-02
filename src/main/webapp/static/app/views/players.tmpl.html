@@ -6,30 +6,30 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="name" class="control-label">Imie (wymagane)</label>
-          <input class="form-control" id="name" ng-model="current.name" placeholder="Imie gracza" required>
+          <input class="form-control" id="name" ng-model="current.name" placeholder="Imie gracza" required btr-validation>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="surname" class="control-label"> Nazwisko (wymagane)</label>
           <input id="surname" class="form-control" ng-model="current.surname" placeholder="Nazwisko gracza"
-                 required />
+                 required btr-validation/>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="telephone" class="control-label">Telefon</label>
-          <input class="form-control" name="start" id="telephone" ng-model="current.telephone" placeholder="np. 768 324 322"
-                 required >
+          <label for="telephone" class="control-label">Telefon (wymagane)</label>
+          <input class="form-control" name="start" id="telephone" ng-model="current.telephone" ng-minlength="9" ng-maxlength="9" placeholder="np. 768 324 322" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                 required btr-validation>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="birth" class="control-label">Wiek</label>
-          <input class="form-control" type="text" name="start" id="birth" ng-model="current.age" placeholder="Wiek gracza"
-                 required >
+          <label for="birth" class="control-label">Wiek (wymagane)</label>
+          <input class="form-control" type="text" name="start" id="birth" ng-model="current.age" ng-minlength="1" ng-maxlength="2" placeholder="Wiek gracza"
+                 required btr-validation>
         </div>
       </div>
     </div>
@@ -57,8 +57,8 @@
   <div class="col-md-12 form-footer text-center">
     <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>
     <button type="button" class="btn btn-danger" ng-if="current.id" ng-click="remove(current)" >Usun</button>
-    <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)" >Aktualizuj</button>
-    <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)" >Dodaj</button>
+    <button type="button" class="btn btn-success" ng-if="current.id" ng-click="save(current)" ng-disabled="spForm.$invalid || spForm.$pristine">Aktualizuj</button>
+    <button type="button" class="btn btn-success" ng-if="!current.id" ng-click="save(current)" ng-disabled="spForm.$invalid || spForm.$pristine">Dodaj</button>
     <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()" >Nowy gracz</button>
   </div>
 </div>
