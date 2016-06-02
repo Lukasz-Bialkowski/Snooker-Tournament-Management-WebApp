@@ -25,6 +25,7 @@ angular.module('myApp.controllers')
         $scope.create = function() {
           frameHTTPSrv.listFrames({tournamentId : $stateParams.tournamentId, matchId: $stateParams.matchId}, function(response) {
             $scope.matchFrames = response;
+            $scope.countPoints();
           });
         };
 
@@ -38,6 +39,6 @@ angular.module('myApp.controllers')
               $scope.secondPlayerScore += parseInt($scope.matchFrames[i].secondPlayerScore);
           }
         };
-        $scope.countPoints();
+
 
 }]);

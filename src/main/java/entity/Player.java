@@ -65,39 +65,4 @@ public class Player {
         this.age = age;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Player player = (Player) o;
-
-        if (id != null ? !id.equals(player.id) : player.id != null) return false;
-        if (!name.equals(player.name)) return false;
-        if (!surname.equals(player.surname)) return false;
-        if (telephone != null ? !telephone.equals(player.telephone) : player.telephone != null) return false;
-        return !(age != null ? !age.equals(player.age) : player.age != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + surname.hashCode();
-        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", age='" + age + '\'' +
-                '}';
-    }
 }

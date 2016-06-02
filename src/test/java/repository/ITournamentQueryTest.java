@@ -34,6 +34,9 @@ public class ITournamentQueryTest {
     @Before
     public void setUp() {
         Tournament tournament = new Tournament();
+        tournament.setCity("Toronto");
+        tournament.setName("St. Vincent Tournament");
+        tournament.setYear(2010);
         tournamentRepository.save(tournament);
     }
 

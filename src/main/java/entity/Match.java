@@ -69,39 +69,4 @@ public class Match {
         this.frames = frames;
     }
 
-    @Override
-    public String toString() {
-        return "Match{" +
-                "id=" + id +
-                ", tournament=" + tournament +
-                ", frames=" + frames +
-                ", firstPlayer=" + firstPlayer +
-                ", secondPlayer=" + secondPlayer +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Match match = (Match) o;
-
-        if (id != null ? !id.equals(match.id) : match.id != null) return false;
-        if (tournament != null ? !tournament.equals(match.tournament) : match.tournament != null) return false;
-        if (frames != null ? !frames.equals(match.frames) : match.frames != null) return false;
-        if (firstPlayer != null ? !firstPlayer.equals(match.firstPlayer) : match.firstPlayer != null) return false;
-        return !(secondPlayer != null ? !secondPlayer.equals(match.secondPlayer) : match.secondPlayer != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (tournament != null ? tournament.hashCode() : 0);
-        result = 31 * result + (frames != null ? frames.hashCode() : 0);
-        result = 31 * result + (firstPlayer != null ? firstPlayer.hashCode() : 0);
-        result = 31 * result + (secondPlayer != null ? secondPlayer.hashCode() : 0);
-        return result;
-    }
 }
