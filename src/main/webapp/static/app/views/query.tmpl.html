@@ -3,18 +3,17 @@
   <fieldset>
     <legend>Kryteria wyszukiwania</legend>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label for="name" class="control-label">Rok (wymagane)</label>
           <input class="form-control" id="name" ng-model="queryYear" placeholder="Filtruj po roku" required>
-          </div>
-        <div class="form-group">
           <button type="button" class="btn btn-default" ui-sref="scores" >Anuluj</button>
           <button type="button" class="btn btn-success" ng-click="query(queryYear)" >Szukaj</button>
         </div>
       </div>
     </div>
-    <div ng-show="!queryTournaments.length">
+    <br>
+    <div ng-show="!queryTournaments.length && searchedRecently">
       <div class="alert alert-warning">
         <strong>Uwaga!</strong> Brak wynikow spelniajacych warunki zapytania.
       </div>

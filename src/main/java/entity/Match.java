@@ -3,6 +3,7 @@ package entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Match {
 
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
-    List<Frame> frames;
+    List<Frame> frames = new ArrayList<>();
 
     @OneToOne
     @JoinColumn

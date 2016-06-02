@@ -310,15 +310,25 @@
 }]).controller('TournamentsCtrl',['$scope', 'tournamentHTTPSrv','$stateParams','$state',
         function ($scope, tournamentHTTPSrv,$stateParams,$state) {
         $scope.current = {};
+        $scope.allTournaments = [];
 
         tournamentHTTPSrv.create({}, function(response) {
             $scope.current = response;
         });
 
+        $scope.getAllTournaments = function() {
+            tournamentHTTPSrv.list({}, function(response) {
+               $scope.allTournaments = response;
+            });
+        };
+
+        $scope.getAllTournaments();
+
         $scope.save = function(item) {
           tournamentHTTPSrv.save(item, function(response){
             $scope.current=response;
             $("#saveModal").modal();
+            $scope.getAllTournaments();
           })
         };
 
@@ -338,21 +348,35 @@
         function ($scope, tournamentHTTPSrv,$stateParams,$state,playerHTTPSrv) {
 
         $scope.current = {};
+        $scope.allPlayers = [];
 
         playerHTTPSrv.create({}, function(response) {
             $scope.current = response;
         });
 
+        $scope.getPlayers = function() {
+          playerHTTPSrv.list({}, function(response) {
+              $scope.allPlayers = response;
+          });
+        };
+
+        $scope.getPlayers();
+
         $scope.save = function(item) {
           playerHTTPSrv.save(item, function(response){
             $scope.current=response;
             $("#saveModal").modal();
+            $scope.getPlayers();
           })
         };
 
         $scope.remove = function(item) {
           playerHTTPSrv.remove({playerId : item.id}, function(response){
+            alert("Usunieto gracza.");
             $scope.create();
+            $scope.getPlayers();
+          }, function(error){
+            alert("Nie mozna usunąc gracza. Gracz dodany do meczu.");
           })
         };
 
@@ -368,10 +392,19 @@
         $scope.current = {};
         $scope.players = [];
         $scope.currentTournament = {};
+        $scope.tournamentMatches = [];
 
         matchHTTPSrv.create({tournamentId : $stateParams.tournamentId}, function(response) {
             $scope.current = response;
         });
+
+        $scope.getTournamentMatches = function() {
+            matchHTTPSrv.tournamentMatches({tournamentId : $stateParams.tournamentId}, function(response){
+              $scope.tournamentMatches = response;
+            });
+        };
+
+        $scope.getTournamentMatches();
 
         playerHTTPSrv.list({}, function(response){
           $scope.players = response;
@@ -385,6 +418,7 @@
           matchHTTPSrv.save({tournamentId : $stateParams.tournamentId}, item, function(response){
             $scope.current=response;
             $("#saveModal").modal();
+            $scope.getTournamentMatches();
           })
         };
 
@@ -438,14 +472,17 @@
               $scope.secondPlayerScore += parseInt($scope.matchFrames[i].secondPlayerScore);
           }
         };
+        $scope.countPoints();
 
 }]).controller('QueryCtrl',['$scope', '$stateParams','$state','tournamentHTTPSrv', function ($scope, $stateParams,$state,tournamentHTTPSrv) {
 
       $scope.queryTournaments =[];
+      $scope.searchedRecently = false;
 
       $scope.query = function(queryYear) {
           tournamentHTTPSrv.tournament({year : queryYear}, function(response){
             $scope.queryTournaments = response;
+            $scope.searchedRecently = true;
           });
       };
 

@@ -48,3 +48,33 @@
     <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()" >Nowy mecz</button>
   </div>
 </div>
+
+<br><br>
+<legend >Lista meczow turnieju {{currentTournament.name}}</legend>
+<div ng-show="!tournamentMatches.length">
+  <div class="alert alert-warning">
+    <strong>Uwaga!</strong> Brak dodanych meczow.
+  </div>
+</div>
+<table ng-show="tournamentMatches.length" class="table table-hover table-striped">
+  <thead>
+  <th>Numer</th>
+  <th>Zawodnik 1</th>
+  <th>Zawodnik 2</th>
+  </thead>
+  <tbody>
+  <tr ng-repeat="matchRow in tournamentMatches | unique:'id'">
+    <td>{{$index+1}}.</td>
+    <td class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">{{matchRow.firstPlayer.name}} {{matchRow.firstPlayer.surname}} - telefon: {{matchRow.firstPlayer.telephone}}</label>
+      </div>
+    </td>
+    <td class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">{{matchRow.secondPlayer.name}} {{matchRow.secondPlayer.surname}} - telefon: {{matchRow.secondPlayer.telephone}}</label>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -53,3 +53,40 @@
     <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()" >Nowy turniej</button>
   </div>
 </div>
+
+<br><br>
+
+<legend >Lista turniejow</legend>
+<div ng-show="!allTournaments.length">
+  <div class="alert alert-warning">
+    <strong>Uwaga!</strong> Brak dodanych turniejow.
+  </div>
+</div>
+<table ng-show="allTournaments.length" class="table table-hover table-striped">
+  <thead>
+  <th>Numer</th>
+  <th>Nazwa</th>
+  <th>Miasto</th>
+  <th>Rok</th>
+  </thead>
+  <tbody>
+  <tr ng-repeat="tournamentRow in allTournaments">
+    <td>{{$index+1}}.</td>
+    <td class="col-md-3">
+      <div class="form-group">
+        <label class="control-label">{{tournamentRow.name}}</label>
+      </div>
+    </td>
+    <td class="col-md-3">
+      <div class="form-group">
+        <label class="control-label">{{tournamentRow.city}}</label>
+      </div>
+    </td>
+    <td class="col-md-3">
+      <div class="form-group">
+        <label class="control-label">{{tournamentRow.year}}</label>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

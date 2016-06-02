@@ -62,3 +62,49 @@
     <button type="button" class="btn btn-info" ng-if="current.id" ng-click="create()" >Nowy gracz</button>
   </div>
 </div>
+<br><br>
+
+<legend >Lista graczy</legend>
+<div ng-show="!allPlayers.length">
+  <div class="alert alert-warning">
+    <strong>Uwaga!</strong> Brak dodanych graczy.
+  </div>
+</div>
+<table ng-show="allPlayers.length" class="table table-hover table-striped">
+  <thead>
+  <th>Numer</th>
+  <th>Imię</th>
+  <th>Nazwisko</th>
+  <th>Wiek</th>
+  <th>Telefon</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <tr ng-repeat="playerRow in allPlayers">
+    <td>{{$index+1}}.</td>
+    <td class="col-md-3">
+      <div class="form-group">
+        <label class="control-label">{{playerRow.name}}</label>
+      </div>
+    </td>
+    <td class="col-md-3">
+      <div class="form-group">
+        <label class="control-label">{{playerRow.surname}}</label>
+      </div>
+    </td>
+    <td class="col-md-3">
+      <div class="form-group">
+        <label class="control-label">{{playerRow.age}}</label>
+      </div>
+    </td>
+    <td class="col-md-3">
+      <div class="form-group">
+        <label class="control-label">{{playerRow.telephone}}</label>
+      </div>
+    </td>
+    <td>
+      <button type="button" class="btn btn-danger" ng-click="remove(playerRow)" >Usun</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

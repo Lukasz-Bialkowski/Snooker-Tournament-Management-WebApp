@@ -33,10 +33,14 @@ public class PlayerController {
         return this.getService().save(model);
     }
 
-    @RequestMapping(method = {RequestMethod.DELETE},value = {"/{id}"})
+    @RequestMapping(method = {RequestMethod.DELETE}, value = {"/{id}"})
     @ResponseBody
-    public void remove(@PathVariable("id") Long id) {
-        this.getService().remove(id);
+    public ResponseEntity remove(@PathVariable("id") Long id) {
+        if (playerService.getMatchesForPlayer(id) == 0) {
+            this.getService().remove(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } else
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(method = {RequestMethod.GET},value = {"/create"})

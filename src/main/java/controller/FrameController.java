@@ -69,11 +69,15 @@ public class FrameController {
     @RequestMapping(method = RequestMethod.GET,value = "/listFrames")
     public ResponseEntity<?> listFrames(@PathVariable long matchId) {
         List<Frame> frames  = new ArrayList<>();
-
-        for (int i = 0; i < NUMBER_OF_FRAMES_IN_MATCH; i++) {
-            frames.add(new Frame());
+        Match match = matchService.get(matchId);
+        List<Frame> matchFrames = match.getFrames();
+        if (matchFrames.isEmpty()) {
+            for (int i = 0; i < NUMBER_OF_FRAMES_IN_MATCH; i++) {
+                frames.add(new Frame());
+            }
+            return new ResponseEntity<List<Frame>>(frames, HttpStatus.OK);
         }
-        return new ResponseEntity<List<Frame>>(frames, HttpStatus.OK);
+        return new ResponseEntity<List<Frame>>(matchFrames, HttpStatus.OK);
     }
 
     @RequestMapping(method = {RequestMethod.POST}, value = {"/saveFrames"})
