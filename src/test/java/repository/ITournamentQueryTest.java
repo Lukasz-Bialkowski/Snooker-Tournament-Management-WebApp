@@ -1,6 +1,5 @@
 package repository;
 
-import config.AppInitializer;
 import config.JPAConfig;
 import config.MvcConfig;
 import config.ServiceConfig;

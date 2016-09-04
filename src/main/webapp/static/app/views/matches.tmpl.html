@@ -6,7 +6,7 @@
       <div class="col-md-6 ">
         <div class="form-group">
           <label for="player1" class="control-label">Zawodnik 1</label>
-          <select class="form-control " id="player1" ng-model="current.firstPlayer"
+          <select class="form-control " id="player1" ng-model="current.firstPlayer" ng-change="updateList()"
                   ng-options='item as (item.name + " "+ item.surname) for item in players track by item.surname' required btr-validation></select>
 
         </div>
@@ -14,7 +14,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="player2" class="control-label">Zawodnik 2</label>
-          <select class="form-control " id="player2" ng-model="current.secondPlayer"
+          <select class="form-control " id="player2" ng-model="current.secondPlayer" ng-change="updateList2()"
                   ng-options='item as (item.name + " "+ item.surname) for item in players track by item.surname' required btr-validation></select>
         </div>
       </div>
